@@ -1,0 +1,54 @@
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+GET employees-details/doc/_search
+
+GET _search
+
+PUT /vehicles/car/124
+{
+  "make":"Honda",
+  "Color":"Black",
+  "HP":250,
+  "milage":"24000",
+  "price":"19300.97"
+}
+
+GET /vehicles/car/124
+GET /vehicles/car/124/_source
+GET /vehicles/motorcycle/124
+
+
+HEAD /vehicles/car/124
+HEAD /vehicles/car/126
+
+
+POST /vehicles/car/124/_update
+{
+  "doc" : {
+    "price":"1000.97"    
+  }
+}
+
+POST /vehicles/car/124/_update
+{
+  "doc" : {
+    "price":"1000.97"    
+  }
+}
+
+GET /vehicles/car/123
+DELETE /vehicles/car/123
+GET /vehicles/car/123
+
+GET /vehicles/car
+DELETE /vehicles/car
+GET /vehicles/car
+
+GET /vehicles
+DELETE /vehicles
+GET vehicles
