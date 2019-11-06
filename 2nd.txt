@@ -1,0 +1,97 @@
+GET business
+
+PUT /business/building/110
+{
+  "address":"57 new dover lane",
+  "floors":10,
+  "offices":21,
+  "loc":{
+    "lat":40.7,
+    "lon":-74.08
+  }
+}
+
+PUT /business/building/217
+{
+  "address":"11 pen ave",
+  "floors":5,
+  "offices":7,
+  "loc":{
+    "lat":40.69,
+    "lon":-73.9808
+  }
+}
+
+#as of elasticsearch version 6 it doesnt support multiple types inside the same index
+
+
+PUT /business/employee/330
+{
+  "name":"Richard Bell",
+  "title":"Senior Accountant",
+  "salar_usd":11500.00,
+  "hiredate":"Jan 19, 2013"
+}
+
+PUT /business/employee/230
+{
+  "name":"Steve Honor",
+  "title":"Attorny",
+  "salar_usd":14000.00,
+  "hiredate":"Oct 19, 2013"
+}
+
+#creating type in its own index
+PUT /employee/employee/330
+{
+  "name":"Richard Bell",
+  "title":"Senior Accountant",
+  "salar_usd":11500.00,
+  "hiredate":"Jan 19, 2013"
+}
+
+PUT /employee/employee/230
+{
+  "name":"Steve Honor",
+  "title":"Attorny",
+  "salar_usd":14000.00,
+  "hiredate":"Oct 19, 2013"
+}
+
+GET business
+GET business/_search
+GET business/employee/_search
+GET business/building/_search
+
+GET business/building/_search
+{
+  "query": {
+    "term":{
+      "address" : "pen"
+    }
+  }
+}
+
+GET business/building/_search
+{
+  "query": {
+    "term":{
+      "address" : "new"
+    }
+  }
+}
+
+GET business/building/_search
+{
+  "query": {
+    "term":{
+      "address" : "New"
+    }
+  }
+}
+
+
+
+
+
+

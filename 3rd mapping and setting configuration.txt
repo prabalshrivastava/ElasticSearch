@@ -1,0 +1,57 @@
+GET /customers
+
+#if you run this elastic search will create the structure of the index Ahead of time even if you dont specify the same.But it is not a good practice.
+
+PUT /customers/online/123
+{
+  "name":"Joe Swanson",
+  "gender":"male",
+  "age":30,
+  "total_spent":275.50,
+  "is_new":false
+}
+
+DELETE customers
+
+PUT /customers
+{
+  "settings" : {
+    "number_of_shards" : 2,
+    "number_of_replicas" : 1
+  },
+  "mappings" : {}
+}
+
+
+#string is deprecated v5 onwards
+PUT /customers/_mapping/online
+{
+  "properties": {
+    "name" : {
+      "type": "string",
+      "analyzer": "standard"
+    }
+  }
+}
+
+
+PUT /customers/_mapping/online
+{
+  "properties": {
+    "name" : {
+      "type": "text",
+      "analyzer": "standard"
+    }
+  }
+}
+
+
+PUT customers/_mapping/instore
+{
+  "properties": {
+    "name" : {
+      "type": "text",
+      "analyzer": "standard"
+    }
+  }
+}
